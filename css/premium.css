@@ -1,0 +1,984 @@
+/* ================================================
+   PREMIUM CINEMATIC NOVEL - ENHANCED STYLES
+   Chapter-specific identities, emotional layers,
+   proposal section, and YES/NO flow
+   ================================================ */
+
+:root {
+  --ch1-color: rgba(120,160,200,0.15);
+  --ch2-color: rgba(60,100,160,0.2);
+  --ch3-color: rgba(180,140,80,0.12);
+  --ch4-color: rgba(255,77,109,0.12);
+  --ch5-color: rgba(229,193,88,0.15);
+  --ch6-color: rgba(100,180,120,0.1);
+  --ch7-color: rgba(160,100,60,0.12);
+  --ch8-color: rgba(255,100,130,0.15);
+  --ch9-color: rgba(229,193,88,0.18);
+}
+
+/* ================================================
+   CHAPTER SPECIFIC VISUAL IDENTITIES
+   ================================================ */
+
+/* Ch1 - Before the Rain: cold blue, isolation */
+.ch1-identity { background: radial-gradient(ellipse at 50% 60%, var(--ch1-color) 0%, transparent 70%); }
+.ch1-identity .chapter-title { text-shadow: 0 0 80px rgba(120,160,200,0.4), 0 0 30px rgba(229,193,88,0.2); }
+.ch1-identity .chapter-rule { background: linear-gradient(90deg, transparent, rgba(120,160,200,0.6), transparent); }
+
+/* Ch2 - Rainy Bridge: deep blue rain haze */
+.ch2-identity { background: radial-gradient(ellipse at 40% 70%, var(--ch2-color) 0%, transparent 65%); }
+.ch2-identity .chapter-title { text-shadow: 0 0 80px rgba(60,100,160,0.5), 0 0 30px rgba(229,193,88,0.2); }
+.ch2-identity .chapter-rule { background: linear-gradient(90deg, transparent, rgba(60,100,160,0.7), rgba(229,193,88,0.4), transparent); }
+
+/* Ch3 - Voice Without Face: warm amber mystery */
+.ch3-identity { background: radial-gradient(ellipse at 60% 40%, var(--ch3-color) 0%, transparent 65%); }
+.ch3-identity .chapter-title { text-shadow: 0 0 80px rgba(180,140,80,0.5), 0 0 30px rgba(229,193,88,0.3); }
+
+/* Ch4 - Unexpected Message: heartbeat crimson */
+.ch4-identity { background: radial-gradient(ellipse at 50% 50%, var(--ch4-color) 0%, transparent 65%); }
+.ch4-identity .chapter-title { text-shadow: 0 0 80px rgba(255,77,109,0.5), 0 0 30px rgba(229,193,88,0.2); }
+.ch4-identity .chapter-rule { background: linear-gradient(90deg, transparent, rgba(255,77,109,0.6), rgba(229,193,88,0.4), transparent); }
+
+/* Ch5 - Missing Piece: golden revelation */
+.ch5-identity { background: radial-gradient(ellipse at 30% 60%, var(--ch5-color) 0%, transparent 60%); }
+.ch5-identity .chapter-title { text-shadow: 0 0 100px rgba(229,193,88,0.5), 0 0 40px rgba(229,193,88,0.3); }
+
+/* Ch6 - Friendship: soft sage warmth */
+.ch6-identity { background: radial-gradient(ellipse at 70% 30%, var(--ch6-color) 0%, transparent 65%); }
+.ch6-identity .chapter-title { text-shadow: 0 0 80px rgba(100,180,120,0.4), 0 0 30px rgba(229,193,88,0.2); }
+
+/* Ch7 - Things I Never Said: dark amber guilt */
+.ch7-identity { background: radial-gradient(ellipse at 50% 70%, var(--ch7-color) 0%, transparent 65%); }
+.ch7-identity .chapter-title { text-shadow: 0 0 80px rgba(160,100,60,0.5), 0 0 30px rgba(229,193,88,0.2); }
+.ch7-identity .chapter-rule { background: linear-gradient(90deg, transparent, rgba(160,100,60,0.5), rgba(229,193,88,0.3), transparent); }
+
+/* Ch8 - More Than Friendship: rose romance */
+.ch8-identity { background: radial-gradient(ellipse at 50% 40%, var(--ch8-color) 0%, transparent 65%); }
+.ch8-identity .chapter-title { text-shadow: 0 0 100px rgba(255,100,130,0.5), 0 0 40px rgba(229,193,88,0.25); }
+.ch8-identity .chapter-rule { background: linear-gradient(90deg, transparent, rgba(255,100,130,0.6), rgba(229,193,88,0.5), transparent); }
+
+/* Ch9 - Confession: full gold, climax */
+.ch9-identity { background: radial-gradient(ellipse at 50% 50%, var(--ch9-color) 0%, transparent 60%); }
+.ch9-identity .chapter-title { text-shadow: 0 0 120px rgba(229,193,88,0.6), 0 0 50px rgba(255,100,130,0.3); }
+.ch9-identity .chapter-rule { background: linear-gradient(90deg, transparent, #E5C158, rgba(255,100,130,0.6), #E5C158, transparent); }
+
+/* ================================================
+   FLOATING MEMORY ORBS
+   ================================================ */
+.memory-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(40px);
+  animation: memoryFloat 15s ease-in-out infinite;
+}
+
+@keyframes memoryFloat {
+  0%   { opacity: 0; transform: translate(0,0) scale(0.8); }
+  20%  { opacity: 0.35; }
+  50%  { opacity: 0.5; transform: translate(var(--mx,30px), var(--my,-40px)) scale(1.1); }
+  80%  { opacity: 0.35; }
+  100% { opacity: 0; transform: translate(0,0) scale(0.8); }
+}
+
+/* ================================================
+   CHAPTER TRANSITION WIPES
+   ================================================ */
+.chapter-wipe-enter {
+  animation: chapterWipeIn 1.2s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes chapterWipeIn {
+  0%   { clip-path: inset(0 100% 0 0); opacity: 0; }
+  100% { clip-path: inset(0 0% 0 0);   opacity: 1; }
+}
+
+/* ================================================
+   ENHANCED CHAPTER HEADERS
+   ================================================ */
+.chapter-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.4;
+  filter: blur(80px);
+  transform: scale(1.3);
+  pointer-events: none;
+}
+
+.chapter-number-large {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(5rem,15vw,12rem);
+  font-weight: 300;
+  color: rgba(229,193,88,0.04);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  letter-spacing: 10px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+/* ================================================
+   TYPEWRITER MOMENT EFFECT
+   ================================================ */
+.typewriter-moment {
+  position: relative;
+  display: inline-block;
+}
+
+.typewriter-moment::after {
+  content: '|';
+  position: absolute;
+  right: -4px;
+  color: var(--glow-primary, #E5C158);
+  animation: twCursor 0.8s ease-in-out infinite;
+  font-weight: 300;
+}
+
+@keyframes twCursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ================================================
+   PARALLAX WORD CLOUD (floating memories)
+   ================================================ */
+.memory-word {
+  position: absolute;
+  font-family: 'Cormorant Garamond', serif;
+  color: rgba(229,193,88,0.12);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: memWordDrift var(--dur,20s) ease-in-out infinite;
+  animation-delay: var(--delay,0s);
+}
+
+@keyframes memWordDrift {
+  0%, 100% { transform: translate(0,0) rotate(var(--rot,0deg)); opacity: var(--opa,0.1); }
+  50% { transform: translate(var(--dx,20px), var(--dy,-15px)) rotate(calc(var(--rot,0deg) + 5deg)); opacity: calc(var(--opa,0.1) * 2.5); }
+}
+
+/* ================================================
+   CHAPTER-SPECIFIC PARTICLE COLORS
+   ================================================ */
+.ch2-particles .scene-dust span { background: rgba(80,130,200,0.6) !important; }
+.ch4-particles .scene-dust span { background: rgba(255,77,109,0.6) !important; }
+.ch8-particles .scene-dust span { background: rgba(255,130,160,0.6) !important; }
+
+/* ================================================
+   GLOW PULSE TEXT
+   ================================================ */
+.glow-text-ch1 { animation: glowCh1 4s ease-in-out infinite; }
+.glow-text-ch4 { animation: glowCh4 3s ease-in-out infinite; }
+.glow-text-ch9 { animation: glowCh9 3s ease-in-out infinite; }
+
+@keyframes glowCh1 {
+  0%,100% { text-shadow: 0 0 20px rgba(120,160,200,0.3); }
+  50% { text-shadow: 0 0 50px rgba(120,160,200,0.7), 0 0 100px rgba(120,160,200,0.3); }
+}
+
+@keyframes glowCh4 {
+  0%,100% { text-shadow: 0 0 20px rgba(255,77,109,0.3); }
+  50% { text-shadow: 0 0 50px rgba(255,77,109,0.7), 0 0 100px rgba(255,77,109,0.3); }
+}
+
+@keyframes glowCh9 {
+  0%,100% { text-shadow: 0 0 20px rgba(229,193,88,0.4), 0 0 40px rgba(255,100,130,0.2); }
+  50% { text-shadow: 0 0 60px rgba(229,193,88,0.8), 0 0 100px rgba(255,100,130,0.4); }
+}
+
+/* ================================================
+   CAMERA LENS FLARE
+   ================================================ */
+.lens-flare {
+  position: fixed;
+  pointer-events: none;
+  z-index: 997;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lens-flare.active { opacity: 1; }
+
+.flare-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(229,193,88,0.8), transparent 70%);
+  filter: blur(4px);
+  animation: flarePulse 0.15s ease-out forwards;
+}
+
+@keyframes flarePulse {
+  0%   { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* ================================================
+   CINEMATIC LETTER-BOX BARS
+   ================================================ */
+.letterbox-bars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 996;
+  transition: opacity 1s ease;
+}
+
+.letterbox-top, .letterbox-bottom {
+  position: absolute;
+  width: 100%;
+  height: 0px;
+  background: #000;
+  transition: height 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+
+.letterbox-top { top: 0; }
+.letterbox-bottom { bottom: 0; }
+
+.letterbox-bars.active .letterbox-top,
+.letterbox-bars.active .letterbox-bottom { height: 44px; }
+
+/* ================================================
+   ENHANCED PROPOSAL / FINALE SECTION
+   ================================================ */
+#finale {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 10%;
+  perspective: 1400px;
+  overflow: hidden;
+}
+
+/* Animated aurora behind finale */
+#finale::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255,77,109,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(229,193,88,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(180,80,180,0.06) 0%, transparent 60%);
+  animation: finaleAurora 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes finaleAurora {
+  0%   { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1;   transform: scale(1.05); }
+}
+
+.finale-container { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+/* ================================================
+   PROPOSAL CARD - REDESIGNED
+   ================================================ */
+#proposal-card {
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 56px;
+  background: rgba(8,7,5,0.7);
+  border: 1px solid rgba(229,193,88,0.2);
+  backdrop-filter: blur(30px);
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    0 0 60px rgba(229,193,88,0.06),
+    0 0 120px rgba(255,77,109,0.04),
+    inset 0 0 60px rgba(229,193,88,0.02);
+  animation: proposalFloat 6s ease-in-out infinite;
+}
+
+@keyframes proposalFloat {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50%       { transform: translateY(-8px) rotateX(1deg); }
+}
+
+/* Corner decorations on proposal card */
+#proposal-card::before,
+#proposal-card::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: rgba(229,193,88,0.4);
+  border-style: solid;
+}
+
+#proposal-card::before { top: 16px; left: 16px; border-width: 1px 0 0 1px; }
+#proposal-card::after  { bottom: 16px; right: 16px; border-width: 0 1px 1px 0; }
+
+.proposal-heart-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proposal-heart-glow {
+  position: absolute;
+  inset: -30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,77,109,0.35) 0%, rgba(229,193,88,0.15) 40%, transparent 70%);
+  filter: blur(20px);
+  animation: heartGlowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes heartGlowPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.7; }
+  50%       { transform: scale(1.2); opacity: 1; }
+}
+
+.proposal-heart-img {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(255,77,109,0.7)) drop-shadow(0 0 50px rgba(255,77,109,0.3));
+  animation: heartBeat 1.5s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.12); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.08); }
+  70%       { transform: scale(1); }
+}
+
+.proposal-text-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.8;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  text-shadow: 0 0 40px rgba(229,193,88,0.2);
+}
+
+.proposal-heart-emoji {
+  display: inline-block;
+  animation: heartEmojiPop 1.8s ease-in-out infinite;
+  color: #ff4d6d;
+  filter: drop-shadow(0 0 8px rgba(255,77,109,0.8));
+}
+
+@keyframes heartEmojiPop {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.25) rotate(-5deg); }
+}
+
+.proposal-divider {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(229,193,88,0.5), transparent);
+  margin: 28px auto;
+}
+
+.proposal-signature {
+  margin-top: 20px;
+}
+
+.proposal-signature-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #E5C158;
+  letter-spacing: 3px;
+  text-shadow: 0 0 30px rgba(229,193,88,0.5), 0 0 60px rgba(229,193,88,0.2);
+  animation: signatureGlow 3s ease-in-out infinite;
+}
+
+@keyframes signatureGlow {
+  0%, 100% { text-shadow: 0 0 30px rgba(229,193,88,0.5); }
+  50%       { text-shadow: 0 0 60px rgba(229,193,88,0.9), 0 0 100px rgba(229,193,88,0.4); }
+}
+
+/* ================================================
+   PROPOSAL BUTTONS
+   ================================================ */
+.proposal-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.proposal-btn {
+  position: relative;
+  padding: 16px 44px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.proposal-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.proposal-btn:hover::before { opacity: 1; }
+.proposal-btn:hover { transform: translateY(-4px) scale(1.04); }
+
+/* YES button */
+.proposal-btn-yes {
+  background: linear-gradient(135deg, rgba(255,77,109,0.15), rgba(229,193,88,0.1));
+  border: 1px solid rgba(229,193,88,0.45);
+  color: #E5C158;
+  box-shadow: 0 0 30px rgba(229,193,88,0.15), inset 0 0 20px rgba(229,193,88,0.05);
+}
+
+.proposal-btn-yes::before {
+  background: linear-gradient(135deg, rgba(255,77,109,0.2), rgba(229,193,88,0.15));
+}
+
+.proposal-btn-yes:hover {
+  border-color: rgba(229,193,88,0.8);
+  box-shadow: 0 0 50px rgba(229,193,88,0.3), 0 0 100px rgba(255,77,109,0.15), inset 0 0 30px rgba(229,193,88,0.1);
+  color: #fff;
+}
+
+/* NO button */
+.proposal-btn-no {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.45);
+}
+
+.proposal-btn-no::before {
+  background: rgba(255,255,255,0.04);
+}
+
+.proposal-btn-no:hover {
+  border-color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.7);
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+/* Ripple effect on buttons */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(229,193,88,0.3);
+  transform: scale(0);
+  animation: btnRipple 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes btnRipple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ================================================
+   YES ACCEPTANCE SCENE
+   ================================================ */
+#yes-scene {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.0);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+  /* Isolate compositing so the particle canvas doesn't repaint the rest
+     of the page tree — critical for smooth animation on low-end devices */
+  contain: layout style;
+  will-change: opacity;
+}
+
+#yes-scene.active {
+  display: flex;
+  animation: yesBgReveal 1.5s ease forwards;
+}
+
+@keyframes yesBgReveal {
+  0%   { background: rgba(0,0,0,0); }
+  100% { background: radial-gradient(ellipse at center, rgba(20,10,8,0.97), rgba(5,3,2,0.99)); }
+}
+
+.yes-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.yes-content {
+  position: relative;
+  z-index: 5;
+  max-width: 600px;
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: yesContentReveal 1s ease 0.8s forwards;
+}
+
+@keyframes yesContentReveal {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.yes-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #E5C158;
+  letter-spacing: 3px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  text-shadow: 0 0 60px rgba(229,193,88,0.6), 0 0 120px rgba(229,193,88,0.2);
+  animation: yesTitleGlow 3s ease-in-out infinite;
+}
+
+@keyframes yesTitleGlow {
+  0%, 100% { text-shadow: 0 0 60px rgba(229,193,88,0.6); }
+  50%       { text-shadow: 0 0 100px rgba(229,193,88,0.9), 0 0 200px rgba(255,77,109,0.3); }
+}
+
+.yes-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.9;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.yes-hearts-row {
+  font-size: 2rem;
+  letter-spacing: 12px;
+  animation: yesHeartsFloat 2s ease-in-out infinite;
+  display: block;
+  margin-bottom: 40px;
+}
+
+@keyframes yesHeartsFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50%       { transform: translateY(-8px); opacity: 1; }
+}
+
+.yes-close-btn {
+  padding: 14px 40px;
+  background: rgba(229,193,88,0.1);
+  border: 1px solid rgba(229,193,88,0.3);
+  color: rgba(229,193,88,0.8);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.yes-close-btn:hover {
+  background: rgba(229,193,88,0.18);
+  color: #E5C158;
+  box-shadow: 0 0 20px rgba(229,193,88,0.2);
+}
+
+/* ================================================
+   ENHANCED FRIEND MODE (NO PATH)
+   ================================================ */
+#friend-mode {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 10%;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, rgba(100,180,120,0.06) 0%, transparent 65%);
+}
+
+#friend-mode::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(229,193,88,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.friend-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  width: 100%;
+}
+
+.friend-header-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 30px;
+  animation: friendEmojiFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(100,200,120,0.5));
+}
+
+@keyframes friendEmojiFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%       { transform: translateY(-12px) rotate(5deg); }
+}
+
+.friend-title-main {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #E5C158;
+  letter-spacing: 2px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-shadow: 0 0 40px rgba(229,193,88,0.3);
+}
+
+.friend-card {
+  background: rgba(8,7,5,0.6);
+  border: 1px solid rgba(229,193,88,0.1);
+  backdrop-filter: blur(20px);
+  padding: 40px 48px;
+  margin: 30px 0;
+  position: relative;
+}
+
+.friend-card::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  right: 12px; bottom: 12px;
+  border: 1px solid rgba(229,193,88,0.06);
+  pointer-events: none;
+}
+
+.friend-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 2;
+  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+}
+
+.friend-text:last-child { margin-bottom: 0; }
+
+.friend-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.friend-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(229,193,88,0.03);
+  border-left: 2px solid rgba(229,193,88,0.2);
+  text-align: left;
+}
+
+.friend-hi-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+
+.friend-hi-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+.friend-closing {
+  margin-top: 30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: rgba(229,193,88,0.6);
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+.friend-fin {
+  margin-top: 40px;
+  font-size: 0.75rem;
+  letter-spacing: 5px;
+  color: rgba(229,193,88,0.3);
+  text-transform: uppercase;
+}
+
+/* ================================================
+   SUBMISSION TOAST
+   ================================================ */
+.submission-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(8,7,5,0.92);
+  border: 1px solid rgba(229,193,88,0.25);
+  color: rgba(229,193,88,0.9);
+  font-family: 'Playfair Display', serif;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  padding: 14px 28px;
+  backdrop-filter: blur(16px);
+  z-index: 99999;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  white-space: nowrap;
+}
+
+.submission-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ================================================
+   ENHANCED SCENE TRANSITIONS
+   ================================================ */
+.emotional-transition {
+  position: relative;
+}
+
+.emotional-transition::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(8,7,5,0.8));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ================================================
+   CHAPTER-SPECIFIC SCENE ACCENTS
+   ================================================ */
+.ch2-scene-accent {
+  background: linear-gradient(135deg, rgba(60,100,160,0.05), transparent) !important;
+}
+
+.ch4-scene-accent {
+  background: radial-gradient(ellipse at center, rgba(255,77,109,0.05) 0%, transparent 70%) !important;
+}
+
+.ch8-scene-accent {
+  background: radial-gradient(ellipse at 60% 60%, rgba(255,100,130,0.07) 0%, transparent 60%) !important;
+}
+
+/* ================================================
+   SCROLL PROGRESS RIBBON
+   ================================================ */
+.scroll-ribbon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(229,193,88,0), #E5C158, rgba(255,77,109,0.7));
+  z-index: 9997;
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(229,193,88,0.6);
+}
+
+/* ================================================
+   ENHANCED HIGHLIGHT SECTIONS
+   ================================================ */
+/* highlight-text container — colour lives here only as a fallback.
+   The actual golden gradient is applied per .word-reveal span below
+   so -webkit-text-fill-color:transparent doesn't swallow child text. */
+.highlight-text {
+  color: var(--gold, #E5C158);
+}
+
+/* When the parent has [data-word-reveal] each word becomes a span;
+   give each span the gradient so it clips correctly on its own box. */
+.highlight-text .word-reveal {
+  background: linear-gradient(135deg, rgba(229,193,88,0.95) 0%, rgba(255,255,255,0.85) 50%, rgba(229,193,88,0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ================================================
+   FIN MARK ANIMATION
+   ================================================ */
+.fin-mark {
+  text-align: center;
+  color: rgba(229,193,88,0.35);
+  font-size: 0.78rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 60px;
+  animation: finFade 4s ease-in-out infinite;
+}
+
+@keyframes finFade {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+/* ================================================
+   RESPONSIVE
+   ================================================ */
+@media (max-width: 768px) {
+  #proposal-card { padding: 44px 28px; }
+  .proposal-buttons { flex-direction: column; align-items: center; }
+  .proposal-btn { width: 100%; max-width: 280px; }
+  .friend-card { padding: 28px 24px; }
+}
+
+/* ================================================
+   OPENING QUOTE TYPEWRITER LINES
+   ================================================ */
+.opening-tw-line {
+  display: inline;
+  color: rgba(229,193,88,0.9);
+}
+
+.opening-tw-cursor-inline {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: rgba(229,193,88,0.8);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: openingCursorBlink 0.65s ease-in-out infinite;
+}
+
+@keyframes openingCursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* ================================================
+   PROPOSAL TYPEWRITER LINE
+   ================================================ */
+#proposal-typewriter-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.8;
+  letter-spacing: 1px;
+  text-shadow: 0 0 40px rgba(229,193,88,0.2);
+  text-align: center;
+  min-height: 3.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.proposal-tw-cursor {
+  display: inline-block;
+  color: rgba(229,193,88,0.9);
+  font-weight: 300;
+  animation: proposalCursorBlink 0.6s ease-in-out infinite;
+  margin-left: 1px;
+  font-size: 1em;
+  line-height: 1;
+}
+
+@keyframes proposalCursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.proposal-tw-cursor.done {
+  animation: proposalCursorFadeOut 0.6s ease 0.4s forwards;
+}
+
+@keyframes proposalCursorFadeOut {
+  to { opacity: 0; width: 0; margin: 0; overflow: hidden; }
+}
+
+/* ================================================
+   YES / NO BUTTON STATES
+   ================================================ */
+.proposal-btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  filter: grayscale(0.3);
+}
+
+.proposal-btn-yes.loading .btn-label-text::after {
+  content: '...';
+  animation: loadingDots 1s step-end infinite;
+}
+
+@keyframes loadingDots {
+  0%   { content: '.'; }
+  33%  { content: '..'; }
+  66%  { content: '...'; }
+  100% { content: '.'; }
+}
+
+/* ================================================
+   SENDING STATE OVERLAY ON CARD
+   ================================================ */
+.proposal-sending-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,7,5,0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  transition: opacity 0.4s ease;
+}
+
+.proposal-sending-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.sending-spinner {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(229,193,88,0.15);
+  border-top-color: rgba(229,193,88,0.8);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

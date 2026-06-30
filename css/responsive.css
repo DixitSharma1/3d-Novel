@@ -1,0 +1,414 @@
+/* =========================================
+   RESPONSIVE CSS
+========================================= */
+
+/* =========================================
+   LARGE TABLETS
+========================================= */
+
+@media (max-width:1024px){
+
+  .scene{
+    padding:90px 8%;
+  }
+
+  .scene-text{
+    font-size:1.15rem;
+    line-height:2;
+  }
+
+  .highlight-text{
+    font-size:clamp(2rem,5vw,4rem);
+  }
+
+  .signature h2{
+    font-size:2.5rem;
+  }
+
+  .heart-image{
+    width:min(240px,65vw);
+  }
+
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width:768px){
+
+  body{
+    cursor:auto;
+  }
+
+  .cursor,
+  .cursor-dot{
+    display:none;
+  }
+
+  /* =========================
+     INTRO
+  ========================= */
+
+  #title{
+    font-size:clamp(2.5rem,10vw,5rem);
+    letter-spacing:2px;
+    line-height:1.2;
+  }
+
+  .intro-subtitle{
+    font-size:0.9rem;
+    padding:0 10px;
+    line-height:1.8;
+  }
+
+  #start-btn{
+    padding:14px 30px;
+    font-size:0.9rem;
+    letter-spacing:2px;
+  }
+
+  /* =========================
+     QUESTIONS
+  ========================= */
+
+  #questions-section{
+    padding:25px;
+  }
+
+  .question-box{
+    padding:45px 30px;
+  }
+
+  .question-title{
+    margin-bottom:45px;
+    font-size:clamp(2rem,7vw,3rem);
+  }
+
+  .question-text{
+    font-size:1.2rem;
+    line-height:1.8;
+  }
+
+  .question-buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .answer-btn{
+    width:100%;
+    max-width:240px;
+  }
+
+  /* =========================
+     SCENES
+  ========================= */
+
+  .scene{
+    padding:80px 7%;
+    min-height:auto;
+  }
+
+  .scene-title{
+    font-size:clamp(2rem,8vw,4rem);
+  }
+
+  .scene-text{
+    font-size:1.05rem;
+    line-height:2;
+  }
+
+  .date-badge{
+    font-size:0.72rem;
+    padding:9px 15px;
+    line-height:1.6;
+  }
+
+  .highlight-text{
+    font-size:clamp(1.8rem,8vw,3rem);
+    line-height:1.5;
+  }
+
+  .flower-text{
+    font-size:4rem;
+  }
+
+  /* =========================
+     FINALE
+  ========================= */
+
+  .final-quote{
+    font-size:1rem;
+    line-height:1.9;
+  }
+
+  .signature{
+    margin-top:50px;
+  }
+
+  .signature h2{
+    font-size:2.2rem;
+  }
+
+  .heart-image{
+    width:min(220px,75vw);
+  }
+
+  /* =========================
+     AUDIO
+  ========================= */
+
+  .audio-controller{
+    top:15px;
+    right:15px;
+  }
+
+  #audio-toggle{
+    width:45px;
+    height:45px;
+  }
+
+  .audio-panel button{
+    padding:9px 14px;
+    font-size:0.85rem;
+  }
+
+  /* =========================
+     EFFECTS
+  ========================= */
+
+  .gold-orb{
+    width:180px;
+    height:180px;
+  }
+
+  .heart-glow{
+    width:320px;
+    height:320px;
+  }
+
+  .heartbeat-glow{
+    width:260px;
+    height:260px;
+  }
+
+  .hidden-quote{
+    display:none;
+  }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width:480px){
+
+  /* =========================
+     INTRO
+  ========================= */
+
+  #intro{
+    padding:0 20px;
+  }
+
+  .intro-line{
+    width:80px;
+    margin-bottom:25px;
+  }
+
+  #title{
+    font-size:2.3rem;
+  }
+
+  .intro-subtitle{
+    font-size:0.82rem;
+  }
+
+  #start-btn{
+    width:100%;
+    max-width:260px;
+    margin-top:35px;
+    padding:14px 20px;
+    letter-spacing:1.5px;
+  }
+
+  /* =========================
+     QUESTIONS
+  ========================= */
+
+  #questions-section{
+    padding:18px;
+  }
+
+  .question-box{
+    padding:35px 22px;
+  }
+
+  .question-tag{
+    font-size:0.8rem;
+    letter-spacing:2px;
+  }
+
+  .question-title{
+    font-size:2rem;
+    margin-bottom:35px;
+    line-height:1.3;
+  }
+
+  .question-text{
+    font-size:1rem;
+    line-height:1.9;
+  }
+
+  .answer-btn{
+    font-size:0.82rem;
+    padding:13px 20px;
+    letter-spacing:1px;
+  }
+
+  /* =========================
+     SCENES
+  ========================= */
+
+  .scene{
+    padding:65px 22px;
+  }
+
+  .scene-title{
+    font-size:2.2rem;
+    line-height:1.3;
+  }
+
+  .scene-text{
+    font-size:0.98rem;
+    line-height:2;
+  }
+
+  .date-badge{
+    font-size:0.68rem;
+    padding:8px 12px;
+    letter-spacing:1px;
+  }
+
+  .highlight-text{
+    font-size:1.9rem;
+    line-height:1.5;
+  }
+
+  .flower-text{
+    font-size:3.5rem;
+  }
+
+  /* =========================
+     FRIEND MODE
+  ========================= */
+
+  .friend-box h2{
+    font-size:2rem;
+    line-height:1.4;
+  }
+
+  .friend-box p{
+    font-size:1rem;
+    line-height:1.9;
+  }
+
+  .friend-cake{
+    font-size:4rem;
+  }
+
+  /* =========================
+     FINALE
+  ========================= */
+
+  #finale{
+    padding:80px 22px;
+  }
+
+  .heart-image{
+    width:180px;
+  }
+
+  .final-quote{
+    font-size:0.92rem;
+    line-height:1.9;
+  }
+
+  .signature h2{
+    font-size:2rem;
+    line-height:1.4;
+  }
+
+  /* =========================
+     AUDIO
+  ========================= */
+
+  .audio-panel{
+    gap:8px;
+  }
+
+  .audio-panel button{
+    width:90px;
+    padding:8px 10px;
+    font-size:0.75rem;
+  }
+
+  /* =========================
+     EFFECTS
+  ========================= */
+
+  .gold-orb{
+    width:140px;
+    height:140px;
+    filter:blur(12px);
+  }
+
+  .heart-glow{
+    width:240px;
+    height:240px;
+  }
+
+  .heartbeat-glow{
+    width:200px;
+    height:200px;
+  }
+
+}
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+
+@media (max-width:340px){
+
+  #title{
+    font-size:1.9rem;
+  }
+
+  .question-title{
+    font-size:1.7rem;
+  }
+
+  .scene-title{
+    font-size:1.8rem;
+  }
+
+  .highlight-text{
+    font-size:1.5rem;
+  }
+
+  .scene-text{
+    font-size:0.9rem;
+  }
+
+  .signature h2{
+    font-size:1.6rem;
+  }
+
+}
+
+/* ── Limited-browser note (Safari / Kiwi / unknown) ──────────────────────
+   These browsers run at ~60-70% capacity via perf-core.js (lower particle
+   and rain counts, ~50fps frame cap). No visual elements are disabled here
+   — JS handles the scaling. No CSS overrides needed. */

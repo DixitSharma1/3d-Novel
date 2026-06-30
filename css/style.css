@@ -1,0 +1,860 @@
+:root{
+  --bg:#080705;
+  --bg2:#0f0c08;
+  --gold:#E5C158;
+  --gold-soft:rgba(229,193,88,0.18);
+  --text:#f8f3ea;
+  --muted:#b8aa8d;
+  --heart:#ff4d6d;
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  font-family:'Playfair Display',serif;
+  line-height:1.7;
+  cursor:none;
+}
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+button{
+  border:none;
+  outline:none;
+  background:none;
+  font-family:inherit;
+}
+
+canvas{
+  display:block;
+}
+
+/* =========================================
+   PARTICLES + RAIN
+========================================= */
+
+#particles-js,
+#rain-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+
+#particles-js{
+  z-index:1;
+}
+
+#rain-canvas{
+  z-index:2;
+  will-change: transform;
+}
+
+/* =========================================
+   FILM GRAIN
+========================================= */
+
+.film-grain{
+  position:fixed;
+  inset:-100%;
+  width:300%;
+  height:300%;
+  pointer-events:none;
+  opacity:0.04;
+  z-index:999;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation:grain 8s steps(10) infinite;
+}
+
+@keyframes grain{
+
+  0%{
+    transform:translate(0,0);
+  }
+
+  10%{
+    transform:translate(-5%,-10%);
+  }
+
+  20%{
+    transform:translate(-15%,5%);
+  }
+
+  30%{
+    transform:translate(7%,-25%);
+  }
+
+  40%{
+    transform:translate(-5%,25%);
+  }
+
+  50%{
+    transform:translate(-15%,10%);
+  }
+
+  60%{
+    transform:translate(15%,0%);
+  }
+
+  70%{
+    transform:translate(0%,15%);
+  }
+
+  80%{
+    transform:translate(3%,35%);
+  }
+
+  90%{
+    transform:translate(-10%,10%);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
+
+}
+
+/* =========================================
+   PAPER TEXTURE
+========================================= */
+
+.paper-texture{
+  position:fixed;
+  inset:0;
+  background:
+    url("../assets/images/paper-texture.webp")
+    center/cover;
+  opacity:0.05;
+  mix-blend-mode:soft-light;
+  pointer-events:none;
+  z-index:3;
+}
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+.cursor{
+  width:40px;
+  height:40px;
+  border:1px solid rgba(229,193,88,0.25);
+  border-radius:50%;
+  position:fixed;
+  top:0;
+  left:0;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:99999;
+  transition:
+    transform 0.15s ease,
+    border-color 0.2s ease;
+}
+
+.cursor-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  position:fixed;
+  top:0;
+  left:0;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  z-index:999999;
+  box-shadow:0 0 14px var(--gold);
+}
+
+/* =========================================
+   AUDIO CONTROLLER
+========================================= */
+
+.audio-controller{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+}
+
+#audio-toggle{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:1px solid rgba(229,193,88,0.2);
+  background:rgba(0,0,0,0.45);
+  color:var(--gold);
+  font-size:1rem;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+  transition:0.4s ease;
+}
+
+#audio-toggle:hover{
+  transform:scale(1.08);
+  box-shadow:
+    0 0 20px rgba(229,193,88,0.2);
+}
+
+.audio-panel{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.audio-panel button{
+  padding:12px 20px;
+  border:1px solid rgba(229,193,88,0.18);
+  background:rgba(0,0,0,0.45);
+  color:var(--gold);
+  cursor:pointer;
+  letter-spacing:1px;
+  backdrop-filter:blur(10px);
+  transition:0.3s ease;
+}
+
+.audio-panel button:hover{
+  background:rgba(229,193,88,0.08);
+  transform:translateY(-2px);
+}
+
+/* =========================================
+   INTRO
+========================================= */
+
+#intro{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  overflow:hidden;
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.88)
+    );
+  z-index:1;
+}
+
+.gold-orb-parallax{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+}
+
+.gold-orb{
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(229,193,88,0.35),
+      transparent 70%
+    );
+  filter:blur(20px);
+  z-index:2;
+}
+
+.intro-content{
+  position:relative;
+  z-index:5;
+}
+
+.intro-line{
+  width:120px;
+  height:1px;
+  background:rgba(229,193,88,0.35);
+  margin:0 auto 35px;
+}
+
+#title{
+  font-size:clamp(3rem,8vw,7rem);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  letter-spacing:4px;
+  color:var(--gold);
+  text-shadow:
+    0 0 30px rgba(229,193,88,0.2);
+}
+
+.intro-subtitle{
+  margin-top:20px;
+  font-size:1rem;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+#start-btn{
+  margin-top:45px;
+  padding:15px 42px;
+  border:1px solid rgba(229,193,88,0.25);
+  color:var(--gold);
+  cursor:pointer;
+  letter-spacing:3px;
+  transition:0.4s ease;
+}
+
+#start-btn:hover{
+  background:rgba(229,193,88,0.08);
+  transform:translateY(-3px);
+  box-shadow:
+    0 0 20px rgba(229,193,88,0.2),
+    0 0 60px rgba(229,193,88,0.1);
+}
+
+/* =========================================
+   QUESTIONS
+========================================= */
+
+#questions-section{
+  min-height:100vh;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  position:relative;
+  z-index:5;
+}
+
+.question-box{
+  width:min(700px,100%);
+  padding:60px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(229,193,88,0.12);
+  backdrop-filter:blur(12px);
+  text-align:center;
+}
+
+.question-tag{
+  color:var(--gold);
+  letter-spacing:3px;
+  margin-bottom:15px;
+}
+
+.question-title{
+  font-size:clamp(2rem,5vw,4rem);
+  font-family:'Cormorant Garamond',serif;
+  margin-bottom:60px;
+}
+
+.question{
+  display:none;
+}
+
+.question.active{
+  display:block;
+}
+
+.question-text{
+  font-size:1.5rem;
+  margin-bottom:35px;
+  color:rgba(255,255,255,0.9);
+}
+
+.question-buttons{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.answer-btn{
+  padding:14px 34px;
+  border:1px solid rgba(229,193,88,0.2);
+  color:var(--gold);
+  cursor:pointer;
+  letter-spacing:2px;
+  transition:0.3s ease;
+}
+
+.answer-btn:hover{
+  background:rgba(229,193,88,0.08);
+  transform:translateY(-2px);
+}
+
+/* =========================================
+   FRIEND MODE
+========================================= */
+
+#friend-mode{
+  min-height:100vh;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px;
+}
+
+.friend-box{
+  width:min(700px,100%);
+}
+
+.friend-box h2{
+  font-size:clamp(2.2rem,5vw,4rem);
+  color:var(--gold);
+  margin-bottom:20px;
+  font-family:'Cormorant Garamond',serif;
+}
+
+.friend-box p{
+  font-size:1.2rem;
+  color:rgba(255,255,255,0.82);
+}
+
+.friend-cake{
+  font-size:5rem;
+  margin:35px 0;
+}
+
+.friend-note{
+  color:var(--muted);
+}
+
+/* =========================================
+   LETTER OPENING
+========================================= */
+
+#letter-opening{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  overflow:hidden;
+}
+
+.paper-top,
+.paper-bottom{
+  position:absolute;
+  width:100%;
+  height:50%;
+  background:
+    linear-gradient(
+      to bottom,
+      #111,
+      #050505
+    );
+}
+
+.paper-top{
+  top:0;
+  border-bottom:
+    1px solid rgba(229,193,88,0.15);
+}
+
+.paper-bottom{
+  bottom:0;
+  border-top:
+    1px solid rgba(229,193,88,0.15);
+}
+
+.letter-light{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(229,193,88,0.3),
+      transparent 70%
+    );
+  filter:blur(30px);
+}
+
+/* =========================================
+   LETTER CONTAINER
+========================================= */
+
+#letter-container{
+  position:relative;
+  z-index:5;
+  display:none;
+}
+
+/* =========================================
+   SCENE
+========================================= */
+
+.scene{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:120px 10%;
+  perspective:1400px;
+  perspective-origin:50% 50%;
+  /* Skip rendering cost for off-screen scenes — browser paints them
+     only when they are about to scroll into view. contain-intrinsic-size
+     acts as a placeholder so the scroll height stays correct. */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 100vh;
+}
+
+.scene-content{
+  position:relative;
+  z-index:5;
+  width:min(900px,100%);
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:1;
+}
+
+/* =========================================
+   BRIDGE SCENE
+========================================= */
+
+.bridge-scene{
+  overflow:hidden;
+}
+
+.bridge-scene::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.55),
+      rgba(0,0,0,0.78)
+    ),
+    url("../assets/images/bridge-bg.webp")
+    center/cover no-repeat;
+  animation:bgSlowZoom 22s ease-in-out infinite alternate;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.date-badge{
+  display:inline-block;
+  margin-bottom:35px;
+  padding:12px 24px;
+  border:1px solid rgba(229,193,88,0.2);
+  background:rgba(0,0,0,0.25);
+  color:var(--gold);
+  font-size:0.85rem;
+  letter-spacing:2px;
+  backdrop-filter:blur(8px);
+}
+
+.scene-title{
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  margin-bottom:30px;
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+}
+
+.scene-text{
+  font-size:1.3rem;
+  line-height:2.2;
+  color:rgba(255,255,255,0.84);
+  margin-bottom:35px;
+}
+
+/* =========================================
+   HEARTBEAT
+========================================= */
+
+.heartbeat-section{
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,77,109,0.12),
+      transparent 60%
+    );
+}
+
+.heartbeat-glow{
+  position:absolute;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,77,109,0.18),
+      transparent 70%
+    );
+  filter:blur(40px);
+}
+
+/* =========================================
+   HIGHLIGHT
+========================================= */
+
+.highlight-section{
+  text-align:center;
+}
+
+.highlight-text{
+  font-size:clamp(2rem,5vw,4.8rem);
+  color:var(--gold);
+  line-height:1.5;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  text-shadow:
+    0 0 25px rgba(229,193,88,0.15);
+}
+
+/* =========================================
+   FLOWER
+========================================= */
+
+.flower-section{
+  text-align:center;
+}
+
+.flower-text{
+  font-size:5rem;
+  margin-bottom:25px;
+}
+
+/* =========================================
+   CHAPTER HEADER
+========================================= */
+
+.chapter-header{
+  text-align:center;
+  min-height:60vh;
+}
+
+.chapter-label{
+  display:inline-block;
+  margin-bottom:28px;
+  padding:12px 24px;
+  border:1px solid rgba(229,193,88,0.2);
+  background:rgba(0,0,0,0.25);
+  color:var(--gold);
+  font-size:0.85rem;
+  letter-spacing:2px;
+  backdrop-filter:blur(8px);
+  text-transform:uppercase;
+}
+
+.chapter-title{
+  font-size:clamp(2.2rem,5vw,4rem);
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  letter-spacing:1px;
+  line-height:1.3;
+  text-shadow:0 0 25px rgba(229,193,88,0.15);
+}
+
+.chapter-rule{
+  width:70px;
+  height:1px;
+  background:rgba(229,193,88,0.35);
+  margin:28px auto 0;
+}
+
+/* =========================================
+   FINALE
+========================================= */
+
+#finale{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:120px 10%;
+  perspective:1200px;
+}
+
+.heart-glow-parallax{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.heart-glow{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,77,109,0.2),
+      transparent 70%
+    );
+  filter:blur(50px);
+}
+
+.heart-image{
+  width:min(280px,70vw);
+  z-index:5;
+  filter:
+    drop-shadow(0 0 18px rgba(255,77,109,0.55))
+    drop-shadow(0 0 45px rgba(255,77,109,0.3))
+    drop-shadow(0 0 90px rgba(229,193,88,0.18))
+    drop-shadow(0 25px 40px rgba(0,0,0,0.4));
+}
+
+.final-quote{
+  margin-top:40px;
+  font-size:1.2rem;
+  line-height:2;
+  letter-spacing:1px;
+  color:rgba(255,255,255,0.72);
+}
+
+.signature{
+  margin-top:70px;
+}
+
+.signature p{
+  color:rgba(255,255,255,0.6);
+  margin-bottom:10px;
+}
+
+.signature h2{
+  font-size:3rem;
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+}
+
+/* =========================================
+   FLOATING QUOTES
+========================================= */
+
+.hidden-quote{
+  position:fixed;
+  color:rgba(229,193,88,0.55);
+  font-size:1.1rem;
+  font-style:italic;
+  pointer-events:none;
+  z-index:0;
+  text-shadow: 0 0 12px rgba(229,193,88,0.3);
+  /* Start invisible; JS reveals after the opening animation completes.
+     Using opacity (not display:none) keeps the element reachable even if
+     the GSAP CDN is slow, so the CSS-fallback transition still works. */
+  opacity:0;
+}
+
+.q1{
+  bottom:120px;
+  left:40px;
+}
+
+.q2{
+  top:40%;
+  right:50px;
+}
+
+.q3{
+  bottom:200px;
+  right:120px;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar{
+  width:6px;
+}
+
+::-webkit-scrollbar-track{
+  background:#050505;
+}
+
+::-webkit-scrollbar-thumb{
+  background:rgba(229,193,88,0.25);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:rgba(229,193,88,0.4);
+}
+
+
+#lightning-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:4;
+  opacity:0;
+}
+/* =========================================================
+   GPU LAYER PROMOTION
+   Each canvas gets its own compositor layer so browser
+   doesn't repaint the main page tree when canvases update.
+   ========================================================= */
+#rain-canvas,
+#lightning-canvas,
+#starfield-canvas,
+#petals-canvas,
+#ink-overlay,
+#opening-canvas,
+.yes-canvas {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Scroll-ribbon lives on GPU for smooth width transition */
+.scroll-ribbon {
+  will-change: width;
+  transform: translateZ(0);
+}
+
+/* Letter container: tell browser it won't change compositor tree */
+#letter-container {
+  isolation: isolate;
+}

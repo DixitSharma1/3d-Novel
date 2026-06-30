@@ -1,0 +1,841 @@
+/* =========================================
+   FADE + ENTRY ANIMATIONS
+========================================= */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUp 1.2s ease forwards;
+}
+
+.fade-in{
+  opacity:0;
+  animation:fadeIn 1.5s ease forwards;
+}
+
+.zoom-in{
+  opacity:0;
+  transform:scale(0.85);
+  animation:zoomIn 1.2s ease forwards;
+}
+
+.blur-in{
+  opacity:0;
+  filter:blur(10px);
+  animation:blurIn 1.4s ease forwards;
+}
+
+@keyframes fadeUp{
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@keyframes fadeIn{
+
+  to{
+    opacity:1;
+  }
+
+}
+
+@keyframes zoomIn{
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+
+}
+
+@keyframes blurIn{
+
+  to{
+    opacity:1;
+    filter:blur(0);
+  }
+
+}
+
+/* =========================================
+   GOLD ORB FLOAT
+========================================= */
+
+.gold-orb{
+  animation:
+    orbFloat 7s ease-in-out infinite,
+    orbGlow 5s ease-in-out infinite;
+}
+
+@keyframes orbFloat{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-22px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+@keyframes orbGlow{
+
+  0%{
+    opacity:0.45;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0.45;
+  }
+
+}
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+#start-btn,
+.answer-btn,
+#audio-toggle,
+.audio-panel button{
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+#start-btn:hover,
+.answer-btn:hover,
+#audio-toggle:hover,
+.audio-panel button:hover{
+  transform:translateY(-4px) scale(1.02);
+}
+
+/* =========================================
+   TYPEWRITER EFFECT
+========================================= */
+
+.typewriter{
+  overflow:hidden;
+  white-space:nowrap;
+  width:0;
+  border-right:2px solid var(--gold);
+
+  animation:
+    typing 4s steps(40,end) forwards,
+    blink 0.8s infinite;
+}
+
+@keyframes typing{
+
+  from{
+    width:0;
+  }
+
+  to{
+    width:100%;
+  }
+
+}
+
+@keyframes blink{
+
+  0%{
+    border-color:transparent;
+  }
+
+  50%{
+    border-color:var(--gold);
+  }
+
+  100%{
+    border-color:transparent;
+  }
+
+}
+
+/* =========================================
+   LETTER OPENING
+========================================= */
+
+.paper-top{
+  animation:paperTopOpen 2s ease forwards;
+}
+
+.paper-bottom{
+  animation:paperBottomOpen 2s ease forwards;
+}
+
+@keyframes paperTopOpen{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  100%{
+    transform:translateY(-100%);
+  }
+
+}
+
+@keyframes paperBottomOpen{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  100%{
+    transform:translateY(100%);
+  }
+
+}
+
+/* =========================================
+   LETTER GLOW
+========================================= */
+
+.letter-light{
+  animation:letterGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes letterGlow{
+
+  0%{
+    opacity:0.4;
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+  50%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1.15);
+  }
+
+  100%{
+    opacity:0.4;
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(70px);
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================================
+   HEARTBEAT GLOW
+========================================= */
+
+.heartbeat-glow{
+  animation:heartbeatGlow 4s ease-in-out infinite;
+  /* Pre-promote to compositor layer so the first animation frame
+     doesn't trigger a mid-scroll layer-promotion hitch. */
+  will-change:transform, opacity;
+}
+
+@keyframes heartbeatGlow{
+
+  0%{
+    transform:scale(1);
+    opacity:0.5;
+  }
+
+  50%{
+    transform:scale(1.12);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:0.5;
+  }
+
+}
+
+/* =========================================
+   HEART IMAGE PULSE
+   (the actual transform/pulse motion is now
+   driven entirely by GSAP in JS — see the
+   heart-image entrance + idle loop tweens —
+   so it doesn't fight with CSS @keyframes
+   over the same transform property)
+========================================= */
+
+/* =========================================
+   FINAL HEART GLOW
+========================================= */
+
+.heart-glow{
+  animation:heartGlow 5s ease-in-out infinite;
+  will-change:transform, opacity;
+}
+
+@keyframes heartGlow{
+
+  0%{
+    opacity:0.45;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:1;
+    transform:scale(1.15);
+  }
+
+  100%{
+    opacity:0.45;
+    transform:scale(1);
+  }
+
+}
+
+/* =========================================
+   FLOATING QUOTES
+========================================= */
+
+.hidden-quote{
+  animation: none;
+}
+
+@keyframes floatingQuotes{
+
+  0%{
+    transform:translateY(0px);
+    opacity:0.35;
+  }
+
+  50%{
+    transform:translateY(-14px);
+    opacity:0.6;
+  }
+
+  100%{
+    transform:translateY(0px);
+    opacity:0.35;
+  }
+
+}
+
+/* =========================================
+   VINTAGE FLICKER
+========================================= */
+
+.vintage-flicker{
+  animation:vintageFlicker 5s infinite;
+}
+
+@keyframes vintageFlicker{
+
+  0%{
+    opacity:1;
+  }
+
+  2%{
+    opacity:0.92;
+  }
+
+  4%{
+    opacity:1;
+  }
+
+  8%{
+    opacity:0.95;
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:1;
+  }
+
+}
+
+/* =========================================
+   PAPER APPEAR
+========================================= */
+
+.paper-appear{
+  animation:paperAppear 1.5s ease forwards;
+}
+
+@keyframes paperAppear{
+
+  0%{
+    opacity:0;
+    transform:
+      translateY(100px)
+      scale(0.9)
+      rotateX(-15deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1)
+      rotateX(0);
+  }
+
+}
+
+/* =========================================
+   SHIMMER EFFECT
+========================================= */
+
+.shimmer{
+  position:relative;
+  overflow:hidden;
+}
+
+.shimmer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+
+  animation:shimmerMove 4s infinite;
+}
+
+@keyframes shimmerMove{
+
+  100%{
+    left:140%;
+  }
+
+}
+
+/* =========================================
+   SLOW FLOAT
+========================================= */
+
+.float{
+  animation:slowFloat 6s ease-in-out infinite;
+}
+
+@keyframes slowFloat{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-18px);
+  }
+
+  100%{
+    transform:translateY(0);
+  }
+
+}
+
+/* =========================================
+   CINEMATIC ZOOM
+========================================= */
+
+.cinematic-zoom{
+  animation:cinematicZoom 8s ease-in-out infinite;
+}
+
+@keyframes cinematicZoom{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.03);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+
+}
+
+/* =========================================
+   STORY SCROLL REVEAL — BLUR + RISE
+   (upgrades the existing .reveal class with
+   a soft blur so text feels like it's
+   focusing into memory rather than just
+   sliding up)
+========================================= */
+
+.reveal{
+  filter:blur(6px);
+  transition:
+    opacity 1.3s ease,
+    transform 1.3s ease,
+    filter 1.3s ease;
+}
+
+.reveal.active{
+  filter:blur(0);
+}
+
+/* =========================================
+   WORD-BY-WORD REVEAL
+   (used on the highlight quote — each word
+   fades & rises in on its own delay, set
+   inline via --d custom property)
+========================================= */
+
+.word-reveal{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(18px) scale(0.97);
+  filter:blur(4px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease,
+    filter 0.8s ease;
+  transition-delay:var(--d,0s);
+}
+
+.word-reveal.active{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  filter:blur(0);
+}
+
+/* =========================================
+   BREATHING GLOW
+   (slower, softer pulse than heartbeatGlow —
+   used for ambient section backdrops)
+========================================= */
+
+.breathing-glow{
+  animation:breathingGlow 6s ease-in-out infinite;
+}
+
+@keyframes breathingGlow{
+
+  0%, 100%{
+    opacity:0.35;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:0.75;
+    transform:scale(1.08);
+  }
+
+}
+
+/* =========================================
+   GENTLE EMOJI / IMAGE FLOAT
+========================================= */
+
+.gentle-float{
+  animation:gentleFloat 5s ease-in-out infinite;
+}
+
+@keyframes gentleFloat{
+
+  0%, 100%{
+    transform:translateY(0) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(-12px) rotate(2deg);
+  }
+
+}
+
+/* =========================================
+   SOFT PULSE (for date badge / small UI)
+========================================= */
+
+.soft-pulse{
+  animation:softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse{
+
+  0%, 100%{
+    opacity:0.85;
+  }
+
+  50%{
+    opacity:1;
+    box-shadow:0 0 18px rgba(229,193,88,0.18);
+  }
+
+}
+
+/* =========================================
+   AMBIENT DUST (per-scene floating motes,
+   distinct from the global particles.js
+   field — these drift slower and live
+   inside individual scenes)
+========================================= */
+
+.scene-dust{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.scene-dust span{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:rgba(229,193,88,0.5);
+  box-shadow:0 0 6px rgba(229,193,88,0.6);
+  animation:dustDrift linear infinite;
+}
+
+@keyframes dustDrift{
+
+  0%{
+    transform:translateY(0) translateX(0);
+    opacity:0;
+  }
+
+  10%{
+    opacity:0.6;
+  }
+
+  90%{
+    opacity:0.4;
+  }
+
+  100%{
+    transform:translateY(-120px) translateX(20px);
+    opacity:0;
+  }
+
+}
+
+/* =========================================
+   SLOW BACKGROUND PARALLAX ZOOM
+   (for image-backed scenes like the bridge)
+========================================= */
+
+.bg-slow-zoom{
+  animation:bgSlowZoom 22s ease-in-out infinite alternate;
+}
+
+@keyframes bgSlowZoom{
+
+  0%{
+    transform:scale(1) translateY(0);
+  }
+
+  100%{
+    transform:scale(1.08) translateY(-1.5%);
+  }
+
+}
+
+/* =========================================
+   SCENE ENTRANCE (active-scene gets a
+   slightly brighter, closer feel as it
+   becomes the focus of attention)
+========================================= */
+
+.scene{
+  transition:filter 1.2s ease;
+}
+
+.scene:not(.active-scene){
+  filter:brightness(0.88);
+}
+
+/* =========================================
+   3D CARD TILT (mouse-reactive)
+   Actual rotation is driven by GSAP quickTo
+   in JS (so it composes correctly with the
+   scroll-triggered transforms on the same
+   element) — this class just opts an element
+   into the 3D rendering context.
+========================================= */
+
+.tilt-3d{
+  transform-style:preserve-3d;
+}
+
+/* =========================================
+   DEPTH LAYERS (parallax-by-distance —
+   farther layers move less & blur slightly,
+   simulating real depth of field)
+========================================= */
+
+.depth-far{
+  will-change:transform, filter;
+}
+
+.depth-mid{
+  will-change:transform;
+}
+
+.depth-near{
+  will-change:transform;
+}
+
+/* =========================================
+   3D HEART — depth glow only; the actual
+   rotation/float motion is driven by GSAP
+   in JS (entrance + idle loop), so there's
+   a single source of truth for transform.
+========================================= */
+
+.heart-image{
+  transform-style:preserve-3d;
+}
+
+/* =========================================
+   3D UNFOLD (highlight quote lifts toward
+   the viewer like a page rising off the
+   paper, rather than a flat scale/opacity)
+========================================= */
+
+.unfold-3d{
+  transform-style:preserve-3d;
+}
+
+/* =========================================
+   AMBIENT GOLD SHARDS (small rotating
+   diamond-shaped glints that drift through
+   3D space within a scene — denser, more
+   "alive" than the plain dust motes)
+========================================= */
+
+.scene-shards{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+  perspective:600px;
+}
+
+.scene-shards span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:linear-gradient(135deg, rgba(229,193,88,0.85), rgba(229,193,88,0));
+  transform:rotate(45deg);
+  animation:shardDrift linear infinite;
+}
+
+@keyframes shardDrift{
+
+  0%{
+    transform:translateZ(-200px) translateY(0) rotate(45deg);
+    opacity:0;
+  }
+
+  15%{
+    opacity:0.8;
+  }
+
+  85%{
+    opacity:0.5;
+  }
+
+  100%{
+    transform:translateZ(120px) translateY(-160px) rotate(225deg);
+    opacity:0;
+  }
+
+}
+
+/* =========================================
+   PERFORMANCE TIERS
+   perf-low-end  → added to <html> by perf-core.js on weak devices
+   perf-reduced-motion → added when OS prefers-reduced-motion
+   Both existed as JS flags but had no matching CSS rules, so
+   heavy animations ran at full weight on old hardware.
+========================================= */
+
+/* --- Low-end: cut the most expensive effects ---------------------- */
+.perf-low-end .scene-dust,
+.perf-low-end .scene-shards{
+  display:none; /* dust + shard canvases gone — these are costly 3-D loops */
+}
+
+.perf-low-end .soft-pulse,
+.perf-low-end .vintage-flicker{
+  animation:none; /* pulse + flicker add redundant repaints on weak GPUs */
+}
+
+.perf-low-end .tilt-3d{
+  transform:none !important;
+  transition:none !important; /* 3-D tilt tracks pointer — disable on low-end */
+}
+
+.perf-low-end .scene::after,
+.perf-low-end .scene::before{
+  display:none; /* hide pseudo-element overlays that trigger extra compositing */
+}
+
+/* Reduce transition durations so animations feel responsive, not sluggish */
+.perf-low-end *{
+  transition-duration: 0.3s !important;
+}
+
+/* --- Reduced-motion: honour OS accessibility preference ----------- */
+.perf-reduced-motion *,
+.perf-reduced-motion *::before,
+.perf-reduced-motion *::after{
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* --- Very-low-end: near-static experience for truly weak hardware -- */
+.perf-very-low-end .scene-dust,
+.perf-very-low-end .scene-shards,
+.perf-very-low-end #rain-canvas,
+.perf-very-low-end #particles-js{
+  display:none;
+}
+
+.perf-very-low-end *{
+  animation:none !important;
+  transition-duration:0.15s !important;
+}
+
+.perf-very-low-end .hidden-quote{
+  /* Quotes still visible — just no float animation */
+  animation:none !important;
+}

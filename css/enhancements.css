@@ -1,0 +1,425 @@
+/* =========================================================
+   ENHANCEMENTS.CSS
+   Styles for all new emotional features added in
+   enhancements.js — zero overrides to existing styles.
+   ========================================================= */
+
+/* =========================================================
+   1. CONSTELLATION CHAPTER TRACKER
+   ========================================================= */
+#constellation-bar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  animation: constellationFadeIn 1s ease 3s forwards;
+}
+
+@keyframes constellationFadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.const-star {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+  position: relative;
+  padding: 4px 8px;
+}
+
+.const-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(229,193,88,0.12);
+  border: 1px solid rgba(229,193,88,0.2);
+  transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative;
+}
+
+.const-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.52rem;
+  color: rgba(229,193,88,0.18);
+  letter-spacing: 1px;
+  transition: color 0.5s ease;
+}
+
+.const-line {
+  width: 20px;
+  height: 1px;
+  background: rgba(229,193,88,0.1);
+  margin-top: -10px;
+  flex-shrink: 0;
+  transition: background 0.5s ease;
+}
+
+/* Active (already-visited) star */
+.const-star.active .const-dot {
+  background: rgba(229,193,88,0.35);
+  border-color: rgba(229,193,88,0.55);
+  box-shadow: 0 0 6px rgba(229,193,88,0.3);
+}
+
+.const-star.active .const-label {
+  color: rgba(229,193,88,0.45);
+}
+
+/* Current chapter star */
+.const-star.current .const-dot {
+  background: rgba(229,193,88,0.8);
+  border-color: #E5C158;
+  box-shadow: 0 0 12px rgba(229,193,88,0.7), 0 0 24px rgba(229,193,88,0.25);
+  transform: scale(1.45);
+}
+
+.const-star.current .const-label {
+  color: rgba(229,193,88,0.8);
+}
+
+/* Line between active stars */
+.const-star.active + .const-line {
+  background: rgba(229,193,88,0.3);
+}
+
+/* Stars are now chapter-jump buttons — make hover/active feel polished */
+.const-star:hover .const-dot {
+  transform: scale(1.35);
+  border-color: rgba(229,193,88,0.7);
+  box-shadow: 0 0 10px rgba(229,193,88,0.5);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.const-star:active .const-dot {
+  transform: scale(1.1);
+  transition: transform 0.08s ease;
+}
+.const-star:hover .const-label {
+  color: rgba(229,193,88,0.75);
+  transition: color 0.18s ease;
+}
+
+
+
+/* =========================================================
+   2. LOVE METER
+   ========================================================= */
+#love-meter {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s ease;
+}
+
+#love-meter.visible {
+  opacity: 1;
+}
+
+#love-meter-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  color: rgba(229,193,88,0.3);
+  letter-spacing: 1.5px;
+  text-align: center;
+  line-height: 1.4;
+  max-width: 52px;
+  word-break: break-word;
+}
+
+#love-meter-arc {
+  transition: stroke-dashoffset 0.8s ease, stroke 0.8s ease;
+}
+
+
+/* =========================================================
+   3. HEARTBEAT OVERLAY
+   ========================================================= */
+#heartbeat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 60, 90, 0);
+  pointer-events: none;
+  z-index: 995;
+  opacity: 0;
+}
+
+
+/* =========================================================
+   4. PETALS CANVAS — already styled inline
+      just ensure it never blocks interaction
+   ========================================================= */
+#petals-canvas {
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   5. LALLI NAME REVEAL SECTION
+   ========================================================= */
+#lalli-name-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+#lalli-name-svg-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+#lalli-name-text {
+  filter: drop-shadow(0 0 16px rgba(229,193,88,0.5));
+}
+
+#lalli-name-reveal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(229,193,88,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   6. INK OVERLAY — styled inline, just z-index insurance
+   ========================================================= */
+#ink-overlay {
+  mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   7. EASTER EGG — SECRET MESSAGE
+   ========================================================= */
+#secret-message {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0);
+  backdrop-filter: blur(0px);
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#secret-message.active {
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(8px);
+  opacity: 1;
+}
+
+#secret-inner {
+  text-align: center;
+  padding: 52px 44px;
+  border: 1px solid rgba(229,193,88,0.2);
+  background: rgba(8,7,5,0.9);
+  max-width: 520px;
+  width: 90vw;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 0 60px rgba(229,193,88,0.08), 0 0 120px rgba(0,0,0,0.8);
+}
+
+#secret-message.active #secret-inner {
+  transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   8. MOOD PILL
+   ========================================================= */
+#mood-pill {
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  background: rgba(8,7,5,0.75);
+  border: 1px solid rgba(229,193,88,0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  color: rgba(229,193,88,0.55);
+  letter-spacing: 1.5px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  animation: moodFadeIn 1s ease 4s forwards;
+}
+
+@keyframes moodFadeIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+#mood-pill.changing {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+#mood-emoji {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+#mood-pill:not(.changing) #mood-emoji {
+  transform: scale(1);
+}
+
+
+/* =========================================================
+   9. SCROLL-TO-TOP BUTTON
+   ========================================================= */
+#scroll-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(229,193,88,0.2);
+  background: rgba(0,0,0,0.5);
+  color: rgba(229,193,88,0.6);
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+#scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+#scroll-top-btn:hover {
+  border-color: rgba(229,193,88,0.5);
+  color: #E5C158;
+  box-shadow: 0 0 16px rgba(229,193,88,0.2);
+  transform: translateY(-2px) scale(1.05);
+}
+
+
+/* =========================================================
+   10. CHAPTER WHISPER
+   ========================================================= */
+#chapter-whisper {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: rgba(229,193,88,0);
+  letter-spacing: 2px;
+  pointer-events: none;
+  z-index: 9001;
+  white-space: nowrap;
+  transition: color 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+}
+
+#chapter-whisper.show {
+  color: rgba(229,193,88,0.5);
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Whisper fades after 2.8s — handled by JS removing .show */
+
+
+/* =========================================================
+   11. STARFIELD — subtle golden shimmer, reinforces depth
+       Already z-index:0, just ensure it doesn't block text
+   ========================================================= */
+#starfield-canvas {
+  pointer-events: none !important;
+  mix-blend-mode: screen;
+}
+
+
+/* =========================================================
+   12. SCROLL RIBBON — make it slightly thicker and more
+       responsive to honor the easter egg cursor hint
+   ========================================================= */
+.scroll-ribbon {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, rgba(229,193,88,0.6), rgba(255,100,130,0.7), rgba(229,193,88,0.6)) !important;
+  z-index: 99999 !important;
+  transition: width 0.1s linear !important;
+  box-shadow: 0 0 8px rgba(229,193,88,0.3) !important;
+  cursor: pointer !important;
+}
+
+
+/* =========================================================
+   ULTRA-LOW / LOW-END DEVICE OVERRIDES
+   Applied via .perf-ultra-low / .perf-low-end on <html>
+   These progressively disable expensive effects so a
+   5-6 year old laptop gets a smooth experience.
+   ========================================================= */
+
+/* Disable film grain animation on ultra-low — expensive GPU blit */
+.perf-ultra-low .film-grain { display: none; }
+
+/* Disable background slow-zoom on weak GPU */
+.perf-ultra-low .scene-bg { animation: none !important; }
+.perf-low-end   .scene-bg { animation-duration: 40s !important; }
+
+/* Reduce box-shadow complexity */
+.perf-ultra-low .scene-content { box-shadow: none !important; }
+
+/* Disable particle canvas on ultra-low (starfield) */
+.perf-ultra-low #starfield-canvas { display: none; }
+
+/* Disable petals canvas on ultra-low */
+.perf-ultra-low #petals-canvas { display: none; }
+
+/* Disable ink overlay on ultra-low */
+.perf-ultra-low #ink-overlay { display: none; }
+
+/* Disable memory orbs on ultra-low */
+.perf-ultra-low .memory-orb { display: none; }
+
+/* Simpler transitions on low-end */
+.perf-low-end * { transition-duration: 0.2s !important; }
+.perf-ultra-low * { transition-duration: 0.1s !important; animation-duration: 0s !important; }
+.perf-ultra-low *::before,
+.perf-ultra-low *::after { animation-duration: 0s !important; }
+
+/* Keep essential animations running on ultra-low */
+.perf-ultra-low #preloader-bar,
+.perf-ultra-low .opening-tw-cursor,
+.perf-ultra-low .opening-tw-cursor-inline {
+  animation-duration: revert !important;
+}
