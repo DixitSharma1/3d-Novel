@@ -1,0 +1,16 @@
+{
+  "name": "3d-novel",
+  "version": "1.0.0",
+  "description": "A cinematic emotional confession letter",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Build complete'",
+    "lint": "echo 'Linting complete'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
